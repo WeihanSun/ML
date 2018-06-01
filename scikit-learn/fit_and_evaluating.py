@@ -21,12 +21,17 @@ X = data[list(data.columns)[:-1]]
 Y = data['quality']
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=.2)
 
+# fitting and r squared value
 regressor = LinearRegression()
 regressor.fit(X_train, Y_train)
 print('r squared value(1 test) = %.2f' % regressor.score(X_test, Y_test))
 
+# cross validation
 regressor_cv = LinearRegression()
 scores = cross_val_score(regressor_cv, X, Y, cv=5)
 print('mean score = %.2f' % scores.mean())
 np.set_printoptions(formatter={'float': '{:.2f}'.format})
 print('cross validation score = ', scores)
+
+
+
