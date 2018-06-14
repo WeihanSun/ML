@@ -1,3 +1,6 @@
+# Tuning hyper-parameters using Grid Search
+# SPAM & HAM SMS classification
+
 
 import pandas as pd
 import numpy as np

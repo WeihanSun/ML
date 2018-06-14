@@ -1,3 +1,7 @@
+# Receiver Operation Curve drawing
+# SPAM & HAM SMS classification
+
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt

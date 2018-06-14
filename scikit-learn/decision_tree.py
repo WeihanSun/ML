@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
@@ -6,16 +7,18 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import classification_report
 
 if __name__ == '__main__':
-    df = pd.read_csv('./data/ad/ad.data', header=None, low_memory=False)
+    df = pd.read_csv('./data/ad/ad.data', header=None, sep=',', dtype='str')
     explanatory_variable_columns = set(df.columns.values)
     response_variable_column = df[len(df.columns.values) - 1]
     explanatory_variable_columns.remove(len(df.columns.values)-1)
     Y = [1 if e == 'ad.' else 0 for e in response_variable_column]
+    #X = np.array(df[list(explanatory_variable_columns)], dtype='int')
     X = df[list(explanatory_variable_columns)]
     # missing data
     X.replace(to_replace=' ', value=-1, regex=True, inplace=True)
+
     X_train, X_test, Y_train, Y_test = train_test_split(X, Y)
-    pipeline = Pipeline(['cls', DecisionTreeClassifier(criterion='entropy')])
+    pipeline = Pipeline([('cls', DecisionTreeClassifier(criterion='entropy'))])
     parameters = {
         'clf__max_depth': (150, 155, 160),
         'clf__min_smaples_split': (1, 2, 3),

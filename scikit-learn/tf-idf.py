@@ -1,3 +1,5 @@
+# TD-IDF features and similarity
+
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import euclidean_distances
 
